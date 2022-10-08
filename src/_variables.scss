@@ -1,0 +1,15 @@
+$o: hsl(26, 100%, 55%);
+$p-o: hsl(25, 100%, 94%);
+$v-d-b: hsl(220, 13%, 13%);
+$d-g-b: hsl(219, 9%, 45%);
+$g-b: hsl(220, 14%, 75%);
+$l-g-b: hsl(223, 64%, 98%);
+$w: hsl(0, 0%, 100%);
+$b: hsl(0, 0%, 0%);
+
+@mixin font($color, $size, $weight) {
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+    font-family: 'Kumbh Sans', sans-serif;
+}

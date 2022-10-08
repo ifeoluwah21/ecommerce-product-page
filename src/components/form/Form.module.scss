@@ -1,0 +1,44 @@
+@import '../../variables';
+
+.form {
+    margin: 1rem;
+    &__controls {
+        padding: 0.5rem 0;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: 1rem 2rem auto 2rem auto 2rem 1rem;
+        background-color: $l-g-b;
+    }
+
+    &__decrement-btn {
+        grid-column: 2/3;
+        @include font($o, 2rem, 700);
+        border: none;
+        background-color: transparent;
+        place-self: center start;
+    }
+    &__increment-btn {
+        grid-column: 6/7;
+        @include font($o, 2rem, 700);
+        border: none;
+        background-color: transparent;
+        place-self: center end;
+    }
+    &__value {
+        grid-column: 4/5;
+        place-self: center;
+        @include font($b, 1.5rem, 700);
+    }
+    &__submit-btn {
+        width: 100%;
+        background-color: $o;
+        border: none;
+        padding: 1rem;
+        border-radius: 10px;
+        @include font($w, 1rem, 700);
+        margin: 1rem 0 3rem;
+        & span {
+            margin-left: 1rem;
+        }
+    }
+}
