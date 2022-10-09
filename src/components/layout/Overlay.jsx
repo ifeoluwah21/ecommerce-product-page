@@ -4,7 +4,7 @@ import styles from "./Overlay.module.scss";
 
 const Overlay = (props) => {
     return (
-        <div onClick={ props.onCloseNav } className={ styles.overlay }></div>
+        <div onClick={ props.toggleOverlay } className={ styles.overlay }></div>
     );
 };
 

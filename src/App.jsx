@@ -13,12 +13,15 @@ function App() {
   const toggleNavHandler = () => {
     setIsNavShown(state => !state);
   };
+  const onShowCartHandler = () => {
+    setIsCartShown(state => !state);
+  };
   return (
     <React.Fragment>
-      <MainHeader openNav={ toggleNavHandler } />
-      { isNavShown && ReactDOM.createPortal(<Overlay onCloseNav={ toggleNavHandler } />, document.getElementById("overlay")) }
-      <main>
-        { isCartShown && ReactDOM.createPortal(<Cart />, document.getElementById("cart")) }
+      <MainHeader show={isNavShown} toggleCart={onShowCartHandler} toggleNav={toggleNavHandler} />
+      {isNavShown && ReactDOM.createPortal(<Overlay toggleOverlay={toggleNavHandler} />, document.getElementById("overlay"))}
+      <main >
+        {isCartShown && ReactDOM.createPortal(<Cart toggleCart={onShowCartHandler} />, document.getElementById("cart"))}
         <MainBody />
       </main>
     </React.Fragment>
