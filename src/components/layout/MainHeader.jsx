@@ -5,18 +5,20 @@ import React from 'react';
 import logo from "../../assets/images/logo.svg";
 import avatar from "../../assets/images/image-avatar.png";
 import styles from "./MainHeader.module.scss";
+import { useSelector } from 'react-redux';
 
 const MainHeader = (props) => {
+    const totalAmount = useSelector(state => state.cart.totalAmount);
     return (
         <header className={ styles.header }>
-            <span onClick={ props.openNav } className={ styles[`header__menu-btn`] } tabIndex={ "0" }>
+            <span onClick={ props.toggleNav } className={ styles[`header__menu-btn`] } tabIndex={ "0" }>
                 <FontAwesomeIcon className={ styles.icon } icon={ faBars } />
             </span>
             <div className={ styles[`header__logo-wrapper`] }>
                 <img src={ logo } alt="Company Logo" />
             </div>
-            <nav className={ styles.nav }>
-                <span className={ styles[`nav__close-btn`] } tabIndex={ "0" }>
+            <nav className={ `${styles.nav} ${props.show ? styles.show : ""}` }>
+                <span onClick={ props.toggleNav } className={ styles[`nav__close-btn`] } tabIndex={ "0" }>
                     <FontAwesomeIcon className={ styles.icon } icon={ faXmark } />
                 </span>
                 <ul className={ styles[`nav__list`] }>
@@ -27,8 +29,8 @@ const MainHeader = (props) => {
                     <li className={ styles[`nav__item`] }><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <span className={ styles[`header__cart-btn`] } tabIndex={ "0" }>
-                <span>{ 1 }</span>
+            <span onClick={ props.toggleCart } className={ styles[`header__cart-btn`] } tabIndex={ "0" }>
+                <span>{ totalAmount }</span>
                 <FontAwesomeIcon className={ styles.icon } icon={ faCartShopping } />
             </span>
             <div className={ styles[`header__avatar-wrapper`] }>
