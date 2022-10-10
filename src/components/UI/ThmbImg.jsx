@@ -3,9 +3,16 @@ import React from 'react';
 
 import styles from "./ThmbImg.module.scss";
 
+
 const ThmbImg = (props) => {
+    const clickHandler = () => {
+        props.onClick(props.id);
+    };
     return (
-        <img className={styles.img} src={props.img} alt="Thumbnail Image" />
+        <div className={`${styles[`img-wrapper`]} ${props.currentIndex === props.id ? styles.active : ""}`}>
+            <img onClick={clickHandler} src={props.img} alt="Thumbnail Image" />
+        </div>
+
     );
 };
 

@@ -1,0 +1,69 @@
+@import '../../variables';
+
+.item-wrapper {
+    display: none;
+}
+@media screen and (min-width: 1024px) {
+    .item-wrapper {
+        display: block;
+        width: 100%;
+        min-height: 20rem;
+        position: fixed;
+        top: 50vh;
+        left: 50vw;
+        transform: translate(-50%, -50%);
+        width: 25rem;
+        z-index: 5;
+
+        &__img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        &__prev-btn,
+        &__next-btn {
+            position: absolute;
+            top: 40%;
+            width: 2rem;
+            border-radius: 50%;
+            height: 2rem;
+            border: none;
+            cursor: pointer;
+            &:hover .icon {
+                color: $o;
+            }
+            .icon {
+                font-size: 1rem;
+                color: $b;
+                transition: all 300ms linear;
+            }
+        }
+        &__prev-btn {
+            left: 0;
+            transform: translate(-50%, -50%);
+        }
+        &__next-btn {
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+        &__thumbnail {
+            display: grid;
+            grid-template-columns: 5rem auto 5rem auto 5rem auto 5rem;
+            margin: 2rem 0;
+        }
+    }
+
+    .cancel {
+        text-align: right;
+        margin: 1rem 0;
+        & .icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 200ms ease;
+            &:hover {
+                color: $o;
+            }
+        }
+    }
+}
