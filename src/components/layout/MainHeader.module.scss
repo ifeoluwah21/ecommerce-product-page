@@ -1,0 +1,186 @@
+@import '../../variables';
+@import '../../App.scss';
+
+.header {
+    background-color: $w;
+    background-color: hsl(0deg, 0%, 100%);
+    display: grid;
+    grid-template-columns: 1rem 1.5rem 1rem 9.5rem auto 1.5rem 1rem 2.5rem 1rem;
+    grid-template-rows: 1rem 2.5rem 1rem;
+    align-items: center;
+
+    &__menu-btn {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        justify-self: start;
+        .icon {
+            padding: 3px 3px 3px 0;
+            font-size: 1.5rem;
+        }
+    }
+
+    &__logo-wrapper {
+        grid-row: 2/3;
+        grid-column: 4/5;
+    }
+
+    &__cart-btn {
+        grid-row: 2/3;
+        grid-column: 6/7;
+        justify-self: end;
+        position: relative;
+        & span {
+            position: absolute;
+            background-color: $o;
+            @include font($b, 0.7rem, 700);
+            padding: 0.1rem 0.5rem;
+            border-radius: 5px;
+            top: 0;
+            right: -10px;
+        }
+        .icon {
+            padding: 3px 3px 3px 3px;
+            font-size: 1.5rem;
+        }
+    }
+
+    &__avatar-wrapper {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        overflow: clip;
+        grid-row: 2/3;
+        grid-column: 8/9;
+        justify-self: end;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 65%;
+    background-color: $w;
+    z-index: 2;
+    padding: 2rem 1.5rem;
+    &.show {
+        display: block;
+    }
+    &__close-btn {
+        display: inline-block;
+        & .icon {
+            @include font($d-g-b, 1.5rem, 400);
+        }
+    }
+
+    &__list {
+        margin: 1rem 0;
+    }
+    &__item {
+        list-style: none;
+
+        margin: 0.5rem 0;
+        & a {
+            display: inline-block;
+            padding: 0.5rem 0;
+            width: 100%;
+            text-decoration: none;
+            @include font($b, 1rem, 700);
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header {
+        overflow-y: hidden;
+        grid-template-columns: 8rem 9.5rem auto 2.5rem 1rem 3rem 8rem;
+        grid-template-rows: 1rem 3rem 1rem;
+        &__menu-btn {
+            display: none;
+        }
+
+        &__cart-btn {
+            grid-column: 4/5;
+        }
+
+        &__logo-wrapper {
+            grid-row: 2/3;
+            grid-column: 2/3;
+        }
+
+        &__avatar-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-column: 6/7;
+            img {
+                width: 92%;
+                height: 92%;
+                position: relative;
+                z-index: 2;
+            }
+            &::after {
+                content: '';
+                top: 0;
+                left: 0;
+                position: absolute;
+                border-radius: 50%;
+                background-color: $o;
+                transition: all 300ms linear;
+            }
+            &:hover::after {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .nav {
+        display: flex;
+        position: static;
+        height: auto;
+        padding: 0;
+        grid-column: 3/4;
+        grid-row: 2/3;
+        justify-content: space-between;
+        place-self: center start;
+        margin-left: 3rem;
+
+        &__close-btn {
+            display: none;
+        }
+        &__list {
+            display: flex;
+            margin: 0;
+            justify-content: space-between;
+            width: 90%;
+        }
+        &__item {
+            margin: 0;
+            position: relative;
+            &:hover::after {
+                min-height: 5px;
+            }
+            &::after {
+                content: '';
+                transition: all 300ms linear;
+                position: absolute;
+                width: 100%;
+                min-height: 0px;
+                bottom: -1.35rem;
+                border-radius: 1rem;
+                left: 0;
+                background-color: $o;
+            }
+        }
+    }
+}

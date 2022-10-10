@@ -1,0 +1,132 @@
+@import '../../variables';
+
+.section {
+    width: 100%;
+    background-color: $w;
+    &__item-wrapper {
+        width: 100%;
+        min-height: 20rem;
+        position: relative;
+        .section__img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    &__thumbnail {
+        display: none;
+    }
+
+    &__prev-btn,
+    &__next-btn {
+        position: absolute;
+        top: 50%;
+        width: 2rem;
+        border-radius: 50%;
+        height: 2rem;
+        border: none;
+        .icon {
+            font-size: 1rem;
+        }
+    }
+    &__prev-btn {
+        left: 0.5rem;
+        transform: translateY(-50%);
+    }
+    &__next-btn {
+        right: 0.5rem;
+        transform: translateY(-50%);
+    }
+    &__title {
+        @include font($o, 1rem, 700);
+        text-transform: uppercase;
+        margin: 1rem;
+    }
+}
+
+.item {
+    margin: 0 1rem 2rem;
+
+    &__name {
+        @include font($b, 2rem, 700);
+    }
+    &__desc {
+        @include font($b, 1rem, 400);
+        line-height: 1.5;
+        margin: 1.5rem 0;
+    }
+    &__price-details {
+        display: grid;
+        grid-template-columns: 5rem 2rem 4rem;
+        & span:first-of-type {
+            @include font($b, 1.5rem, 700);
+            grid-column: 1/2;
+        }
+
+        & span:nth-of-type(2) {
+            grid-column: 3/4;
+            place-self: center;
+            background-color: $p-o;
+            border-radius: 10px;
+            @include font($o, 1rem, 700);
+            width: 100%;
+            text-align: center;
+            padding: 0.3rem 0;
+        }
+        & span:nth-of-type(3) {
+            grid-column: 5/6;
+            text-decoration: line-through;
+            @include font($g-b, 1rem, 700);
+            place-self: center end;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section {
+        grid-template-columns: 8rem 25rem 5rem 25rem 8rem;
+        display: grid;
+        grid-template-rows: repeat(11, 3rem);
+        margin: 3rem 0;
+        justify-content: center;
+        &__item-wrapper {
+            width: 25rem;
+            grid-column: 2/3;
+            grid-row: 1/-1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            & button {
+                display: none;
+            }
+        }
+        &__img {
+            border-radius: 15px;
+        }
+        &__title {
+            grid-column: 4/5;
+            margin: 0;
+            grid-row: 1/2;
+            align-self: center;
+        }
+        &__thumbnail {
+            display: grid;
+            grid-template-columns: 5rem auto 5rem auto 5rem auto 5rem;
+        }
+    }
+
+    .item {
+        grid-column: 4/5;
+        margin: 0;
+        grid-row: 2/8;
+        align-self: center;
+
+        &__price-details {
+            grid-template-rows: 2rem 2rem;
+            & span:nth-of-type(3) {
+                grid-row: 2/3;
+                grid-column: 1/2;
+                place-self: center start;
+            }
+        }
+    }
+}
