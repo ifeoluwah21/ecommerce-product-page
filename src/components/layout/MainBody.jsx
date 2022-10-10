@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from "react-dom";
 import img1 from "../../assets/images/image-product-1.jpg";
 import img2 from "../../assets/images/image-product-2.jpg";
 import img3 from "../../assets/images/image-product-3.jpg";
@@ -16,6 +17,8 @@ import styles from "./MainBody.module.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
 import ThmbImg from '../UI/ThmbImg';
+import ImgsModal from '../UI/ImgsModal';
+import Overlay from './Overlay';
 
 const imgs = [img1, img2, img3, img4];
 const imgThbs = [imgThb1, imgThb2, imgThb3, imgThb4];
@@ -24,6 +27,10 @@ const MainBody = () => {
     const products = useSelector(state => state.store.products);
     const dispatch = useDispatch();
     const [count, setCount] = useState(0);
+    const [isImgModalShown, setIsImgModalShown] = useState(false);
+    const toggleImgModelHandler = () => {
+        setIsImgModalShown(state => !state);
+    };
     const addToCartHandler = (num) => {
         dispatch(cartActions.addItem({
             id: products[0].id,
@@ -48,12 +55,19 @@ const MainBody = () => {
             return state - 1;
         });
     };
+    const changeFromThb = (id) => {
+        console.log(id);
+        console.log(count);
+        setCount(id);
+    };
     return (
         <section className={styles.section}>
+            {isImgModalShown && ReactDOM.createPortal(<Overlay className="img-overlay" toggleOverlay={toggleImgModelHandler} />, document.getElementById("overlay"))}
+            {isImgModalShown && ReactDOM.createPortal(<ImgsModal toggle={toggleImgModelHandler} count={count} prevHandler={prevHandler} nextHandler={nextHandler} changeFromThb={changeFromThb} />, document.getElementById("img"))}
             <div className={styles[`section__item-wrapper`]}>
-                <img className={styles[`section__img`]} src={imgs[count]} alt="sneaker" />
+                <img onClick={toggleImgModelHandler} className={styles[`section__img`]} src={imgs[count]} alt="sneaker" />
                 <div className={styles[`section__thumbnail`]}>
-                    {imgThbs.map(imgThb => <ThmbImg img={imgThb} key={Math.random().toString()} />)}
+                    {imgThbs.map((imgThb, index) => <ThmbImg currentIndex={count} onClick={changeFromThb} id={index} img={imgThb} key={Math.random().toString()} />)}
                 </div>
                 <Button onClick={prevHandler} className={styles[`section__prev-btn`]}><FontAwesomeIcon icon={faChevronLeft} className={styles.icon} /></Button>
                 <Button onClick={nextHandler} className={styles[`section__next-btn`]}><FontAwesomeIcon icon={faChevronRight} className={styles.icon} /></Button>

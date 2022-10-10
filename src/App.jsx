@@ -22,6 +22,7 @@ function App() {
       {isNavShown && ReactDOM.createPortal(<Overlay toggleOverlay={toggleNavHandler} />, document.getElementById("overlay"))}
       <main >
         {isCartShown && ReactDOM.createPortal(<Cart toggleCart={onShowCartHandler} />, document.getElementById("cart"))}
+
         <MainBody />
       </main>
     </React.Fragment>

@@ -9,6 +9,15 @@
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 1;
     animation: slide 500ms linear;
+    &.img-overlay {
+        z-index: 3;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .img-overlay {
+        display: none;
+    }
 }
 
 @keyframes slideIn {
